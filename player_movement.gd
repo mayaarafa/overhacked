@@ -21,11 +21,13 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# handle dash.
-	if can_dash == false && dash_duration.is_stopped():
+	if can_dash == false && is_dashing == true && dash_duration.is_stopped():
+		print("dash cooldown start");
 		is_dashing = false;
 		dash_cooldown.start();
 		
 	if is_dashing == false && can_dash == false && dash_cooldown.is_stopped():
+		print("dash cooldown ended");
 		can_dash = true;
 	
 	# Handle jump.
