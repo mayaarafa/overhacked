@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb1vfu13vd8yg"]
+[gd_scene load_steps=5 format=3 uid="uid://cb1vfu13vd8yg"]
+
+[ext_resource type="Script" uid="uid://bvldu7wbvjp2g" path="res://player_movement.gd" id="1_mlf6e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_05hpe"]
 
@@ -9,11 +11,8 @@ albedo_color = Color(0.9059108, 0.3169879, 0.7785261, 1)
 
 [node name="game scene" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16564941, -0.14435756, -1.4381027)
-size = Vector3(13.109619, 0.44506836, 13.740524)
-
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_mlf6e")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -24,8 +23,20 @@ material = SubResource("StandardMaterial3D_mlf6e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_po0ka")
 
+[node name="DashCooldown" type="Timer" parent="CharacterBody3D"]
+wait_time = 0.7
+one_shot = true
+
+[node name="DashDuration" type="Timer" parent="CharacterBody3D"]
+one_shot = true
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 10, 2)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.05916698, 0.9982481, 0, -0.9982481, 0.05916698, 0, 10.612567, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16564941, -0.14435756, -1.4381027)
+use_collision = true
+size = Vector3(13.109619, 0.44506836, 13.740524)
