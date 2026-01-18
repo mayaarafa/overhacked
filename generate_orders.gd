@@ -3,11 +3,11 @@ extends Node3D
 # FSM for interactions
 # generate order
 # loop 1
-# player comes close with item
-# check if right item
-# if so display check mark
-# player places item
-# sets equivalent dictionary to true
+# player comes close with item // left off here - need item blocker
+# check if right item // 
+# if so display check mark //
+# player places item // 
+# sets equivalent dictionary to true //
 # check if all dictionary entries are true
 # if not - loop 1
 # if yes:
@@ -15,7 +15,7 @@ extends Node3D
 # generate random order_cooldown in range
 # set on_cooldown to true
 # Remove order - done
-# display no text on project_order
+# display no text on project_order // done
 # wait for cooldown timer to finish
 # #generate new order
 
@@ -37,6 +37,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if (on_cooldown && cooldown.is_stopped()):
 		on_cooldown = false;
+		generate_new_order();
 		
 	
 
@@ -72,4 +73,3 @@ func set_dictionary(new_dict):
 	order = new_dict;
 	var text_project_order = get_node("text_project_order");
 	text_project_order.update_dict(order);
-	
