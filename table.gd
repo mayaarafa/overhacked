@@ -7,25 +7,23 @@ extends Node3D
 var current_item: Node3D = null
 
 func _ready() -> void:
-	print("Table ready")
 	if spawn_on_ready:
-		spawn_item()
+		call_deferred("spawn_item")
+
 
 func spawn_item() -> void:
-	print("Spawning item on table")
-
 	if current_item != null:
-		print("Item already exists")
 		return
-
 	if item_scene == null:
 		push_error("item_scene NOT assigned on Table")
 		return
 
 	var item = item_scene.instantiate()
-	get_tree().current_scene.add_child(item)
-	#item.global_position = spawn_point.global_position
-	var cam := get_viewport().get_camera_3d()
-	item.global_position = cam.global_position + (-cam.global_transform.basis.z * 2.0)
+
+	# Add after the tree finishes setting up
+	get_tree().current_scene.add_child.call_deferred(item)
+
+	# Also defer setting position until it's inside tree
+	item.call_deferred("set_global_position", spawn_point.global_position)
 
 	current_item = item
