@@ -14,25 +14,28 @@ albedo_color = Color(0.8901961, 0.42745098, 0.5647059, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31edp"]
 
-[node name="Node3D" type="Node3D"]
+[node name="judge" type="Node3D"]
 script = ExtResource("1_8i3eg")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="proximity" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="proximity"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024261475, 0.5093384, -0.887619)
 shape = SubResource("BoxShape3D_xakv3")
 script = ExtResource("2_so5y2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="table" type="StaticBody3D" parent="."]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="StaticBody3D"]
+[node name="table_mesh" type="CSGMesh3D" parent="table"]
 mesh = SubResource("BoxMesh_4grvf")
 material = SubResource("ORMMaterial3D_8odax")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table"]
 shape = SubResource("BoxShape3D_31edp")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="text_project_order" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("3_6mjbl")
+
+[node name="order_generation_cooldown" type="Timer" parent="."]
+one_shot = true
