@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://c01fyae3tx0pe"]
+
+[ext_resource type="Script" uid="uid://21kdci71wd15" path="res://generate_orders.gd" id="1_8i3eg"]
+[ext_resource type="Script" uid="uid://dfit5au6106m8" path="res://check_for_correct_items_in_radius.gd" id="2_so5y2"]
+[ext_resource type="Script" uid="uid://qbkrqtvgsnv7" path="res://update_label.gd" id="3_6mjbl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xakv3"]
+size = Vector3(4.38031, 2.0186768, 5.1250305)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4grvf"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_8odax"]
+albedo_color = Color(0.8901961, 0.42745098, 0.5647059, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31edp"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_8i3eg")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024261475, 0.5093384, -0.887619)
+shape = SubResource("BoxShape3D_xakv3")
+script = ExtResource("2_so5y2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_4grvf")
+material = SubResource("ORMMaterial3D_8odax")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_31edp")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3_6mjbl")
