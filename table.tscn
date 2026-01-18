@@ -1,4 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvgitloalo265"]
+[gd_scene load_steps=8 format=3 uid="uid://dvgitloalo265"]
+
+[ext_resource type="Script" uid="uid://7c6k6tatnsf4" path="res://table.gd" id="1_jd0nb"]
+[ext_resource type="PackedScene" uid="uid://cr7p7iilgu145" path="res://item_3d.tscn" id="2_v5i0k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1emcc"]
 
@@ -17,6 +20,8 @@ material = SubResource("StandardMaterial3D_jd0nb")
 size = Vector3(0.1, 0.75, 0.1)
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_jd0nb")
+item_scene = ExtResource("2_v5i0k")
 
 [node name="Table" type="StaticBody3D" parent="."]
 
@@ -42,3 +47,6 @@ mesh = SubResource("BoxMesh_v5i0k")
 [node name="Leg4" type="MeshInstance3D" parent="Table"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93433005, 0.13164651, 0.54255575)
 mesh = SubResource("BoxMesh_v5i0k")
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0431285, 0)
